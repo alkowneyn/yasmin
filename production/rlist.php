@@ -174,6 +174,7 @@ th{
                 <tr>
                     <td><?php echo $row["gid"] ?></td>
                     <td><?php echo $row["gfullname"] ?></td>
+                    <td><?php echo $row["gdate"] ?></td>
                     <td><?php echo $row["floor"] ?></td>
                     <td><?php echo $row["rno"] ?></td>
                     <td><?php echo $row["rtype"] ?></td>
