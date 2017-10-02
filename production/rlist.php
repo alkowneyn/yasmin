@@ -196,7 +196,7 @@ th{
                                              <input type="date" name="gdate" id="#edit-<?php echo $row['gid']; ?>" class="form-control" value="<?php echo $row['gdate']; ?>"><br>
                                             <select name="floor" id="#edit-<?php echo $row['gid']; ?>" class="form-control">
                                                 <option value="<?php echo $row['floor']; ?>"><?php echo $row['floor']; ?></option>
-                                                  
+                                                
                                             </select>
                                             <select name="rno" id="#edit-<?php echo $row['gid']; ?>" class="form-control">
                                                 <option value="<?php echo $row['rno']; ?>"><?php echo $row['rno']; ?></option>
