@@ -193,7 +193,7 @@ th{
                                         <form class="form-group"  method="POST">
                                         <input type="text" name="gid" id="#edit-<?php echo $row['gid']; ?>" class="form-control" value="<?php echo $row['gid']; ?>"><br>
                                             <input type="text" name="gfullname" id="#edit-<?php echo $row['gid']; ?>" class="form-control" value="<?php echo $row['gfullname']; ?>"><br>
-
+                                             <input type="date" name="gdate" id="#edit-<?php echo $row['gid']; ?>" class="form-control" value="<?php echo $row['gdate']; ?>"><br>
                                             <select name="floor" id="#edit-<?php echo $row['gid']; ?>" class="form-control">
                                                 <option value="<?php echo $row['floor']; ?>"><?php echo $row['floor']; ?></option>
                                                   

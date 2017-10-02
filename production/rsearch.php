@@ -14,6 +14,7 @@ $pswd = "";
 $db = "simpledata";
 $gid="";
 $gfullname="";
+$gdate="";
 $floor="";
 $rno="";
 $rtype="";
@@ -31,10 +32,11 @@ function getData()
 $data =array();
 $data[0] =$_POST['gid'];
 $data[1] =$_POST['gfullname'];
-$data[2] =$_POST['floor'];
-$data[3] =$_POST['rno'];
-$data[4] =$_POST['rtype'];
-$data[5] =$_POST['rprice'];
+$data[2] =$_POST['gdate'];
+$data[3] =$_POST['floor'];
+$data[4] =$_POST['rno'];
+$data[5] =$_POST['rtype'];
+$data[6] =$_POST['rprice'];
 
 
 
@@ -49,8 +51,9 @@ if (isset($_POST['searchid'])) {
     $search_result =mysqli_query($conn,$sql);
 if (mysqli_num_rows($search_result)){
  while ($rows=mysqli_fetch_array($search_result)) {
-$floor=$rows['gid'];
-$floor=$rows['gfullname'];
+$id=$rows['gid'];
+$gfullname=$rows['gfullname'];
+$date=$rows['gdate'];
 $floor=$rows['floor'];
 $rno=$rows['rno'];
 $rtype=$rows['rtype'];
@@ -71,7 +74,7 @@ while (  $row=$ressalt->fetch_assoc()) {
 $id=$row['gid'];
 $name=$row['gfullname'];
 } 
-$sql = "UPDATE room SET gfullname='$info[1]', floor='$info[2]', rno='$info[3]', rtype='$info[4]', rprice='$info[5]' WHERE gid='$info[0]'";
+$sql = "UPDATE room SET gfullname='$info[1]', gdate='$info[2]', floor='$info[3]', rno='$info[4]', rtype='$info[5]', rprice='$info[6]' WHERE gid='$info[0]'";
 if ($conn->query($sql)===TRUE) {
     echo"Record updated successfully";
 }
