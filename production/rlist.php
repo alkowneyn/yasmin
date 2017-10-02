@@ -181,7 +181,6 @@ th{
                     <td><?php echo $row["rprice"] ?></td>
                    
                     <td>
-                    
                        <button type="submit" class="btn btn-success" data-toggle="modal" data-target="#edit-<?php echo $row['gid']; ?>" id=""><i class="fa fa-pencil fa-lg"></i> Edit</button>
                         <div class="modal fade" role="dialog" id="edit-<?php echo $row['gid']; ?>">
                             <div class="modal-dialog">
