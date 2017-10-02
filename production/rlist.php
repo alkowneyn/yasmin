@@ -181,6 +181,7 @@ th{
                     <td><?php echo $row["rprice"] ?></td>
                    
                     <td>
+                    
                        <button type="submit" class="btn btn-success" data-toggle="modal" data-target="#edit-<?php echo $row['gid']; ?>" id=""><i class="fa fa-pencil fa-lg"></i> Edit</button>
                         <div class="modal fade" role="dialog" id="edit-<?php echo $row['gid']; ?>">
                             <div class="modal-dialog">
@@ -193,6 +194,7 @@ th{
                                         <form class="form-group"  method="POST">
                                         <input type="text" name="gid" id="#edit-<?php echo $row['gid']; ?>" class="form-control" value="<?php echo $row['gid']; ?>"><br>
                                             <input type="text" name="gfullname" id="#edit-<?php echo $row['gid']; ?>" class="form-control" value="<?php echo $row['gfullname']; ?>"><br>
+
                                             <select name="floor" id="#edit-<?php echo $row['gid']; ?>" class="form-control">
                                                 <option value="<?php echo $row['floor']; ?>"><?php echo $row['floor']; ?></option>
                                                   
