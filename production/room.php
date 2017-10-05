@@ -56,7 +56,7 @@ if(!isset($_SESSION['username'])){
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="index.php" class="site_title"><i class="fa fa-hotel"></i> <span>Hotel Yasmin Plaza</span></a>
+              <a href="index.php" class="site_title"><i class="fa fa-paw"></i> <span>Hotel Yasmin Plaza</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -87,8 +87,13 @@ if(!isset($_SESSION['username'])){
                      
                     </ul>
                   </li>
-                  
-                         <li><a><i class="fa fa-hotel"></i> Room<span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-home"></i> check in <span class="fa fa-chevron-down"></span></a>
+                      <ul class="nav child_menu">
+                        <li><a href="checkin.php">  check in </a></li>
+                         <li><a href="rsearch.php">checkin list</a></li>
+                         </ul>
+                         </li>
+                         <li><a><i class="fa fa-home"></i> Room<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="room.php">Room Regestration</a></li>
                       <li><a href="rooms.php">Room list</a></li>
@@ -228,12 +233,12 @@ if(!isset($_SESSION['username'])){
 			</div>
 			<div class="panel-body">
 				<form  style="width:100%; margin: 30px 0px 0px 0px";  id="guest-form"  method="post" action="room.php">
-					<div class="col-sm-12">	
+										
 						<div class="row">
 							<div class="col-sm-8 form-group">
 								<label control-label" for="state"">Floor*</label>
 								<div class="control-group">
-                                  <select id="floor" name="floor" class="form-control" required>
+                                  <select id="floor" name="floor"  class="form-control" required>
                                      <?php
                                             $sql = "select floor  from rooms";
                                             $result = $conn->query($sql);
@@ -243,19 +248,24 @@ if(!isset($_SESSION['username'])){
                                             <?php }
                                             }
                                         ?>
+                                   
+
+
+                                       
+
                                   </select> 
                                 </div>
 							</div>	
-						
-								 <div class="col-sm-4 form-group">
-					<div class="form-group">
-						<label control-label" for="rno"">Room Number*</label>
-             <input type="text" name="rno" id="#edit-<?php echo $row['room_id']; ?>" class="form-control" value="<?php echo $row['room_no']; ?>"><br>                    
-					</div>		
-            </div>
+							<div class="col-sm-4   form-group">
+								<label control-label" for="city"">Room Number*</label>
+								<div class="control-group">
+              
+								<input type="number" name="room_no" placeholder="Enter room no.." class="form-control" required>
+                                </div>
 							</div>
 								
               </div>
+              
             <div class="row">
 					<div class="col-sm-8 form-group">
 					<div class="form-group">
@@ -277,21 +287,24 @@ if(!isset($_SESSION['username'])){
             <div class="col-sm-4 form-group">
 					<div class="form-group">
 						<label control-label" for="rprice"">Room Price*</label>
-             <input type="text" name="rprice" id="#edit-<?php echo $row['room_id']; ?>" class="form-control" value="<?php echo $row['room_price']; ?>"><br>                    
-					</div>		
-            </div>
-            </div>
+					
+                                  <input type="text" name="rprice" placeholder="Enter room no.." class="form-control" required> 
+                              </div>		
+                              
+                                </div>
+                                
+                                </div>
   <div class="row">
 					<div class="col-sm-8 form-group">
 					<div class="form-group">
 						<label control-label" for="rprice"">Room Status*</label>
-						<select id="rstatus" name="rstatus"  class="form-control" required>
+						<select id="room_status" name="room_status"  class="form-control" required>
                                     <?php
                                             $sql = "select rstatus  from hrooms";
                                             $result = $conn->query($sql);
                                             if($result->num_rows > 0) {
                                                 while($row = $result->fetch_assoc()) { ?>
-                                            <option value="<?php echo $row['rstatus']; ?>"><?php echo $row['rstatus']; ?></option>
+                                            <option ><?php echo $row['rstatus']; ?></option>
                                             <?php }
                                             }
                                         ?>
@@ -299,10 +312,9 @@ if(!isset($_SESSION['username'])){
 					</div>		
 					
             </div>
+            </div>
                       <div class="form-group">
-                        <div class="col-md-12">
-                         
-						  
+                        <div class="col-md-8  col-md-offset-4">
                            <button style="width:100%; margin: 15px 0px 0px 0px;" type="submit" name="register" class="btn btn-lg btn-danger">Rigester</button>	
                         </div>
                         
@@ -362,7 +374,10 @@ if(!isset($_SESSION['username'])){
 
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.min.js"></script>
-    <script>
+	
+  </body>
+  
+<script>
       /// waa midka sameynaya dropdown items-ka
       $(document).ready(function(){
           $("#rtype").on("change", function(){
@@ -383,6 +398,7 @@ if(!isset($_SESSION['username'])){
               }
       });
       });
-      </script>
-  </body>
+</script>
+
+  
 </html>

@@ -95,6 +95,12 @@ if(!isset($_SESSION['username'])){
                      
                     </ul>
                   </li>
+                  <li><a><i class="fa fa-home"></i> check in <span class="fa fa-chevron-down"></span></a>
+                      <ul class="nav child_menu">
+                        <li><a href="checkin.php">  check in </a></li>
+                         <li><a href="rsearch.php">checkin list</a></li>
+                         </ul>
+                         </li>
                   
                          <li><a><i class="fa fa-home"></i> Room<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
@@ -241,7 +247,7 @@ if(!isset($_SESSION['username'])){
         		<div class="row">
 					<div class="col-sm-12 form-group">
 								<label control-label" for="name"">Full Name*</label>
-								<input type="text" id="name" name="gfullname" pattern="[a-zA-Z]{1,35}+[a-zA-Z]{1,35}" placeholder="Enter your Full Name Here.." class="form-control" required>
+								<input type="text" id="name" name="gfullname" pattern="[a-zA-Z\s]+" placeholder="Enter your Full Name Here.." class="form-control" required>
 							</div>
 						</div>					
 						<div class="form-group">
@@ -299,7 +305,7 @@ if(!isset($_SESSION['username'])){
 					</div>		
 					<div class="form-group">
 						<label control-label" for="email"">Email Address</label>
-						<input type="Email" id="email" name="gemail" placeholder="Enter Email Address Here.." class="form-control">
+						<input type="Email" id="email" name="gemail" placeholder="Enter Email Address Here.." class="form-control" required>
             <label class="row">Gender*:</label>
             </div>
             </div>

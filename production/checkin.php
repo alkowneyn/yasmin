@@ -282,11 +282,11 @@ if(!isset($_SESSION['username'])){
 								<div class="control-group">
                                   <select id="rno" name="rno"  class="form-control" required>
                                <?php
-                                            $sql = "select rno  from roomno";
+                                            $sql = "select room_no  from roomno";
                                             $result = $conn->query($sql);
                                             if($result->num_rows > 0) {
                                                 while($row = $result->fetch_assoc()) { ?>
-                                            <option value="<?php echo $row['rno']; ?>"><?php echo $row['rno']; ?></option>
+                                            <option value="<?php echo $row['room_no']; ?>"><?php echo $row['room_no']; ?></option>
                                             <?php }
                                             }
                                         ?>
