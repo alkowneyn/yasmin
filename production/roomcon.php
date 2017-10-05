@@ -9,7 +9,7 @@
 		$data[4] = $_POST['rno'];
 		$data[5] = $_POST['rtype'];
 		$data[6] = $_POST['rprice'];
-		
+	
 		return $data;
 	}
 

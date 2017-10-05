@@ -199,18 +199,14 @@ th{
                                         <input type="text" name="gid" id="#edit-<?php echo $row['gid']; ?>" class="form-control" value="<?php echo $row['gid']; ?>"><br>
                                             <input type="text" name="gfullname" id="#edit-<?php echo $row['gid']; ?>" class="form-control" value="<?php echo $row['gfullname']; ?>"><br>
                                             <input type="text" name="gaddress" id="#edit-<?php echo $row['gid']; ?>" class="form-control" value="<?php echo $row['gaddress']; ?>"><br>
-                                            <select name="gcountry" id="#edit-<?php echo $row['gid']; ?>" class="form-control">
-                                                <option value="<?php echo $row['gcountry']; ?>"><?php echo $row['gcountry']; ?></option>
-                                            </select>
-                                            <select name="gcity" id="#edit-<?php echo $row['gid']; ?>" class="form-control">
-                                                <option value="<?php echo $row['gcity']; ?>"><?php echo $row['gcity']; ?></option>
-                                            </select>
+                                            <input type="text" name="gcountry" id="#edit-<?php echo $row['gid']; ?>" class="form-control" value="<?php echo $row['gcountry']; ?>"><br>
+                                            <input type="text" name="gcity" id="#edit-<?php echo $row['gid']; ?>" class="form-control" value="<?php echo $row['gcity']; ?>"><br>
                                             
                                             <input type="date" name="gdate" id="#edit-<?php echo $row['gid']; ?>" class="form-control" value="<?php echo $row['gdate']; ?>"><br>
                                             <input type="text" name="gphone" id="#edit-<?php echo $row['gid']; ?>" class="form-control" value="<?php echo $row['gphone']; ?>"><br>
                                             <input type="text" name="gemail" id="#edit-<?php echo $row['gid']; ?>" class="form-control" value="<?php echo $row['gemail']; ?>"><br>
                                             <input type="text" name="ggender" id="#edit-<?php echo $row['gid']; ?>" class="form-control" value="<?php echo $row['ggender']; ?>"><br>
-                                            <button type="submit" class="btn btn-success" name="update" id="#edit-<?php echo $row['gid']; ?>">Update Gust</button>
+                                            <button style="width:100%; margin: 15px 0px 0px 0px;" type="submit" class="btn btn-success" name="update" id="#edit-<?php echo $row['gid']; ?>">  Update </button>
                              
                                         </form>
                              </td>

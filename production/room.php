@@ -10,7 +10,7 @@ if(!isset($_SESSION['username'])){
 }
 
 ?>
-<?php include("roomcon.php"); ?>
+<?php include("roomconn2.php"); ?>
 
 
 
@@ -56,7 +56,7 @@ if(!isset($_SESSION['username'])){
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="index.php" class="site_title"><i class="fa fa-paw"></i> <span>Hotel Yasmin Plaza</span></a>
+              <a href="index.php" class="site_title"><i class="fa fa-hotel"></i> <span>Hotel Yasmin Plaza</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -87,12 +87,14 @@ if(!isset($_SESSION['username'])){
                      
                     </ul>
                   </li>
-                    <li><a><i class="fa fa-home"></i> Rooms <span class="fa fa-chevron-down"></span></a>
-                      <ul class="nav child_menu">
-                        <li><a href="room.php">  Rooms </a></li>
-                         <li><a href="rsearch.php">Room list</a></li>
-                         </ul>
-                         </li>
+                  
+                         <li><a><i class="fa fa-hotel"></i> Room<span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="room.php">Room Regestration</a></li>
+                      <li><a href="rooms.php">Room list</a></li>
+                     
+                    </ul>
+                  </li>
                 </ul>
               </div>
 
@@ -217,38 +219,21 @@ if(!isset($_SESSION['username'])){
 
         <!-- /top navigation -->
         
- <div class="container">
+ <div class="container-fluid">
     <!-- <h1 class="well">Gust Regestration </h1> -->
-	<div class="col-lg-8 col-lg-offset-4 ">
+	<div class="col-lg-7 col-lg-offset-4 ">
 	<div class="row">
-				<form  id="guest-form"  method="post" action="room.php">
-					<div class="col-sm-8">
-        		<div class="row">
-                      <div class="col-md-8 col-sm-6 col-xs-12 form-group has-feedback">
-                      	<label control-label" for="gfullname"">Fullname*</label>
-                         <select id="gfullname" name="gfullname"  class="form-control" required>
-                                 <?php
-                                            $sql = "select gfullname  from guest";
-                                            $result = $conn->query($sql);
-                                            if($result->num_rows > 0) {
-                                                while($row = $result->fetch_assoc()) { ?>
-                                            <option value="<?php echo $row['gfullname']; ?>"><?php echo $row['gfullname']; ?></option>
-                                            <?php }
-                                            }
-                                        ?>
-                                   
-                                  </select> 
-                        </div>
-                        <div class="col-sm-4 form-group">
-								<label >Date of Regestration*</label>
-								<input type="date" name="gdate" placeholder="Enter datae Code Here.." class="form-control" required>
-							</div>	
-                      </div>					
+  <div class="panel panel-primary">
+			<div class="panel-heading"><center>check in</center> 
+			</div>
+			<div class="panel-body">
+				<form  style="width:100%; margin: 30px 0px 0px 0px";  id="guest-form"  method="post" action="room.php">
+					<div class="col-sm-12">	
 						<div class="row">
-							<div class="col-sm-6 form-group">
+							<div class="col-sm-8 form-group">
 								<label control-label" for="state"">Floor*</label>
 								<div class="control-group">
-                                  <select id="floor" name="floor"  class="form-control" required>
+                                  <select id="floor" name="floor" class="form-control" required>
                                      <?php
                                             $sql = "select floor  from rooms";
                                             $result = $conn->query($sql);
@@ -258,35 +243,21 @@ if(!isset($_SESSION['username'])){
                                             <?php }
                                             }
                                         ?>
-                                   
-
-
-                                       
-
                                   </select> 
                                 </div>
 							</div>	
-							<div class="col-sm-6 form-group">
-								<label control-label" for="city"">Room Number*</label>
-								<div class="control-group">
-                                  <select id="rno" name="rno"  class="form-control" required>
-                               <?php
-                                            $sql = "select rno  from rooms";
-                                            $result = $conn->query($sql);
-                                            if($result->num_rows > 0) {
-                                                while($row = $result->fetch_assoc()) { ?>
-                                            <option value="<?php echo $row['rno']; ?>"><?php echo $row['rno']; ?></option>
-                                            <?php }
-                                            }
-                                        ?>
-                                  </select> 
-                                </div>
+						
+								 <div class="col-sm-4 form-group">
+					<div class="form-group">
+						<label control-label" for="rno"">Room Number*</label>
+             <input type="text" name="rno" id="#edit-<?php echo $row['room_id']; ?>" class="form-control" value="<?php echo $row['room_no']; ?>"><br>                    
+					</div>		
+            </div>
 							</div>
 								
               </div>
-              
             <div class="row">
-					<div class="col-sm-6 form-group">
+					<div class="col-sm-8 form-group">
 					<div class="form-group">
 						<label control-label" for="rprice"">Room Type*</label>
 						<select id="rtype" name="rtype"  class="form-control" required>
@@ -303,52 +274,48 @@ if(!isset($_SESSION['username'])){
 					</div>		
 					
             </div>
-            <div class="col-sm-6 form-group">
+            <div class="col-sm-4 form-group">
 					<div class="form-group">
 						<label control-label" for="rprice"">Room Price*</label>
-						<select id="rprice" name="rprice"  class="form-control" required>
-                                   <?php
-                                            $sql = "select rprice  from rooms";
+             <input type="text" name="rprice" id="#edit-<?php echo $row['room_id']; ?>" class="form-control" value="<?php echo $row['room_price']; ?>"><br>                    
+					</div>		
+            </div>
+            </div>
+  <div class="row">
+					<div class="col-sm-8 form-group">
+					<div class="form-group">
+						<label control-label" for="rprice"">Room Status*</label>
+						<select id="rstatus" name="rstatus"  class="form-control" required>
+                                    <?php
+                                            $sql = "select rstatus  from hrooms";
                                             $result = $conn->query($sql);
                                             if($result->num_rows > 0) {
                                                 while($row = $result->fetch_assoc()) { ?>
-                                            <option value="<?php echo $row['rprice']; ?>"><?php echo $row['rprice']; ?></option>
+                                            <option value="<?php echo $row['rstatus']; ?>"><?php echo $row['rstatus']; ?></option>
                                             <?php }
                                             }
                                         ?>
-                                   
                                   </select> 
 					</div>		
 					
             </div>
-            
-            </div>
-  
                       <div class="form-group">
-                        <div class="col-md-8 col-sm-9 col-xs-12 col-md-offset-4">
+                        <div class="col-md-12">
                          
 						  
-                           <button  type="submit" name="register" class="btn btn-lg btn-info">Rigester</button>	
+                           <button style="width:100%; margin: 15px 0px 0px 0px;" type="submit" name="register" class="btn btn-lg btn-danger">Rigester</button>	
                         </div>
+                        
                       </div>
 
 				
 				</form> 
-        
+        </div>
 				</div>
 
 	</div>
 	</div>
-        <!-- footer content -->
-        <footer>
-          <div class="pull-right">
-            Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
-          </div>
-          <div class="clearfix"></div>
-       
-        <!-- /footer content -->
-      </div>
-       </footer>
+        
     </div>
 
   <script src="jquery-3.2.1.js"></script>
@@ -395,6 +362,27 @@ if(!isset($_SESSION['username'])){
 
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.min.js"></script>
-	
+    <script>
+      /// waa midka sameynaya dropdown items-ka
+      $(document).ready(function(){
+          $("#rtype").on("change", function(){
+            
+          var ItemID = $(this).val();
+          if(ItemID){
+              $.get(
+                  "rno.php",
+                  {rtype: ItemID},
+                  function(data){
+                      $("input[name=rprice]").val(data);
+                  }
+              );
+              
+          }
+              else{
+                  $("#rno").html("enter");
+              }
+      });
+      });
+      </script>
   </body>
 </html>

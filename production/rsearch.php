@@ -179,12 +179,19 @@ if(isset($_GET['Delete'])){
                      
                     </ul>
                   </li>
-                    <li><a><i class="fa fa-home"></i> Rooms <span class="fa fa-chevron-down"></span></a>
+                    <li><a><i class="fa fa-home"></i> check in <span class="fa fa-chevron-down"></span></a>
                       <ul class="nav child_menu">
-                        <li><a href="room.php">  Rooms </a></li>
-                         <li><a href="rsearch.php">Room list</a></li>
+                        <li><a href="checkin.php">  check in </a></li>
+                         <li><a href="rsearch.php">checkin list</a></li>
                          </ul>
                          </li>
+                         <li><a><i class="fa fa-rome"></i> Room<span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="room.php">Room Regestration</a></li>
+                      <li><a href="rooms.php">Room list</a></li>
+                     
+                    </ul>
+                  </li>
                 </ul>
               </div>
 

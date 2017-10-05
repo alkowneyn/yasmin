@@ -1530,7 +1530,7 @@ ul.msg_list li a .message {
 }
 .navbar-nav .open .dropdown-menu {
     position: absolute;
-    background: #fff;
+    background: gold;
     margin-top: 0;
     border: 1px solid #D9DEE4;
     -webkit-box-shadow: none;
@@ -1586,7 +1586,7 @@ ul.to_do p {
     padding: 3px 6px;
     border: 1px solid #abd9ea;
     border-radius: 5px;
-    background: #fff
+    background: gold
 }
 ul.quick-list {
     width: 45%;
@@ -2295,12 +2295,12 @@ select.parsley-error {
     display: inline-block
 }
 .well .markup {
-    background: #fff;
+    background: gold;
     color: #777;
     position: relative;
     padding: 45px 15px 15px;
     margin: 15px 0 0 0;
-    background-color: #fff;
+    background-color:gold;
     border-radius: 0 0 4px 4px;
     box-shadow: none
 }

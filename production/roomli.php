@@ -19,6 +19,8 @@ $floor="";
 $rno="";
 $rtype="";
 $rprice="";
+$rstatus="";
+
 
 
 
@@ -37,12 +39,18 @@ $data[3] =$_POST['floor'];
 $data[4] =$_POST['rno'];
 $data[5] =$_POST['rtype'];
 $data[6] =$_POST['rprice'];
+$data[7] =$_POST['rstatus'];
+
+
+
+
+
 return $data;
 }
 
 if (isset($_POST['searchid'])) {
     $info = getData();
-    $sql = "SELECT * FROM room WHERE gid= '$info[0]'";
+    $sql = "SELECT * FROM hrooms WHERE gid= '$info[0]'";
     $search_result =mysqli_query($conn,$sql);
 if (mysqli_num_rows($search_result)){
  while ($rows=mysqli_fetch_array($search_result)) {
@@ -54,7 +62,7 @@ $floor=$rows['floor'];
 $rno=$rows['rno'];
 $rtype=$rows['rtype'];
 $rprice=$rows['rprice'];
-
+$rstatus=$rows['rstatus'];
 }
 }
 }
@@ -63,7 +71,7 @@ $rprice=$rows['rprice'];
 // sql to delete a record
 if (isset($_POST['update'])) {
       $info = getData();
-$sql = "UPDATE room SET gfullname='$info[1]', gdate='$info[2]',floor='$info[3]', rno='$info[4]', rtype='$info[5]', rprice='$info[6]' WHERE gid='$info[0]'";
+$sql = "UPDATE hrooms SET gfullname='$info[1]', gdate='$info[2]',floor='$info[3]', rno='$info[4]', rtype='$info[5]', rprice='$info[6]', rstatus='$info[7]' WHERE gid='$info[0]'";
 if ($conn->query($sql)===TRUE) {
     echo"Record updated successfully";
 }
@@ -75,12 +83,12 @@ else {
 
 
 if(isset($_GET['Delete'])){
-    $sql = "SELECT * FROM room ";
+    $sql = "SELECT * FROM hrooms ";
     $result=$conn->query($sql);
     $row=$result->fetch_assoc();
     $id=$row['id'];
     //$idDelete = $_GET['idDelete'];
-    $sql = "DELETE FROM room WHERE  gid='$gid'";
+    $sql = "DELETE FROM hrooms WHERE  gid='$gid'";
     if($conn->query($sql)===TRUE) {
         header("location: rsearch.php");
     }
@@ -123,30 +131,16 @@ th{
 
   </head>
   <body>
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
 <?php
     $conn = new mysqli("localhost", "root", "", "simpledata");
     if(isset($_POST["query"]))
     {
         $search = mysqli_real_escape_string($conn, $_POST["query"]);
-        $query = " SELECT * FROM room  WHERE gid LIKE '%".$search."%' OR gfullname LIKE '%".$search."%'  OR floor LIKE '%".$search."%'  OR rno LIKE '%".$search."%'";
+        $query = " SELECT * FROM hrooms  WHERE gid LIKE '%".$search."%' OR gfullname LIKE '%".$search."%'  OR floor LIKE '%".$search."%'  OR rno LIKE '%".$search."%'";
     }
     else
     {
-        $query = " SELECT * FROM room ORDER BY gid ";
+        $query = " SELECT * FROM hrooms ORDER BY gid ";
     }
     $result = mysqli_query($conn, $query);
     if(mysqli_num_rows($result) > 0)
@@ -161,6 +155,7 @@ th{
                     <th>Room Number</th>
                     <th>Room Type</th>
                     <th>Room Price</th>
+                    <th>Room Status</th>
                      <th>Action</th>
                       <th>Action</th>
                    </tr>       
@@ -174,6 +169,7 @@ th{
                     <td><?php echo $row["rno"] ?></td>
                     <td><?php echo $row["rtype"] ?></td>
                     <td><?php echo $row["rprice"] ?></td>
+                    <td><?php echo $row["rstatus"] ?></td>
                    
                     <td>
                        <button type="submit" class="btn btn-success" data-toggle="modal" data-target="#edit-<?php echo $row['gid']; ?>" id=""><i class="fa fa-pencil fa-lg"></i> Edit</button>
@@ -193,6 +189,7 @@ th{
                                              <input type="text" name="rno" id="#edit-<?php echo $row['gid']; ?>" class="form-control" value="<?php echo $row['rno']; ?>"><br>
                                              <input type="text" name="rtype" id="#edit-<?php echo $row['gid']; ?>" class="form-control" value="<?php echo $row['rtype']; ?>"><br>
                                              <input type="text" name="rprice" id="#edit-<?php echo $row['gid']; ?>" class="form-control" value="<?php echo $row['rprice']; ?>"><br>
+                                             <input type="text" name="rstatus" id="#edit-<?php echo $row['gid']; ?>" class="form-control" value="<?php echo $row['status']; ?>"><br>
                                             <button style="width:100%; margin: 15px 0px 0px 0px;" type="submit" class="btn btn-success" name="update" id="#edit-<?php echo $row['gid']; ?>">Update</button>
                              
                                         </form>
@@ -214,37 +211,7 @@ th{
 else{
  echo 'Data Not Found';}
 echo "</table></div>";
-?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- 
-			<table class="table table-bordered table-stripped table-condensed">
-				<tr>
-					<th>ID</th>
-					<th>Full Name</th>
-					<th>Address</th>
-					<th>Country</th>
-					<th>City</th>
-                    <th>Date</th>
-                    <th>Phone</th>
-                    <th>Email</th>
-                    <th>Gender</th>
-				</tr> -->
-	 
-		 
+?>		 
 		</div>
 
 

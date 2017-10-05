@@ -95,12 +95,14 @@ if(!isset($_SESSION['username'])){
                      
                     </ul>
                   </li>
-                    <li><a><i class="fa fa-home"></i> Rooms <span class="fa fa-chevron-down"></span></a>
-                      <ul class="nav child_menu">
-                        <li><a href="room.php">  Rooms </a></li>
-                         <li><a href="rsearch.php">Room list</a></li>
-                         </ul>
-                         </li>
+                  
+                         <li><a><i class="fa fa-home"></i> Room<span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="room.php">Room Regestration</a></li>
+                      <li><a href="rooms.php">Room list</a></li>
+                     
+                    </ul>
+                  </li>
                 </ul>
               </div>
 
@@ -227,8 +229,12 @@ if(!isset($_SESSION['username'])){
  <div class="container">
   
     <!-- <h1 class="well">Gust Regestration </h1> -->
-	<div class="col-lg-8 col-lg-offset-4 ">
+	<div class="col-lg-6 col-lg-offset-4 ">
 	<div class="row">
+  <div class="panel panel-primary">
+			<div class="panel-heading"><center>Guest </center> 
+			</div>
+			<div class="panel-body">
 				<form  id="guest-form"  method="post" action="index.php">
 					<div class="col-sm-8">
 				
@@ -314,16 +320,16 @@ if(!isset($_SESSION['username'])){
    </div>
    </div>
 				<div class="row">
-					<div class="col-sm-6">
+					<div class="col-sm-10 col-md-offset-2">
 					<div class="form-group">
-					<button  type="submit" name="register" class="btn btn-lg btn-info">Rigester</button>	
+					<button  style="width:100%; margin: 15px 0px 0px 0px;"   type="submit" name="register"  class="btn btn-lg btn-danger" >Rigester</button>	
 								</div>
                 </div>
-                <div class="col-sm-6">
-                <button  type="reset" name="reset" class="btn btn-lg btn-info">Reset</button>
-                </div>
+               
 				</div>
 				</form> 
+        </div>
+        </div>
         <div id="confirmation" class="alert-succes hidden">
         <span class="glyphicon glyphicon-star"></span> Thank yuo for your Regestration 
         </div>

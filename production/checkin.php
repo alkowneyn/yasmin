@@ -1,4 +1,8 @@
 <?php
+$link=mysqli_connect("localhost","root","");
+mysqli_select_db($link,"simpledata");
+?>
+<?php
 include "config.php";
 session_start();
 if(!isset($_SESSION['username'])){
@@ -6,105 +10,10 @@ if(!isset($_SESSION['username'])){
 }
 
 ?>
-
-
-<?php
-$host ="localhost";
-$user = "root";
-$pswd = "";
-$db = "simpledata";
-$gid="";
-$gfullname="";
-$gaddress="";
-$gcountry="";
-$gcity="";
-$gdate="";
-$gphone="";
-$gemail="";
-$ggender="";
-
-
-mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-//$conn = mysqli_connect($host,$user,$pswd,$db);//(MySQLi Procedural)
-$conn = new mysqli($host,$user,$pswd,$db);//(MySQLi Object-oriented)
-
-
-function getData()
-{
-$data =array();
-$data[0] =$_POST['gid'];
-$data[1] =$_POST['gfullname'];
-$data[2] =$_POST['gaddress'];
-$data[3] =$_POST['gcountry'];
-$data[4] =$_POST['gcity'];
-$data[5] =$_POST['gdate'];
-$data[6] =$_POST['gphone'];
-$data[7] =$_POST['gemail'];
-$data[8] =$_POST['ggender'];
+<?php include("roomcon.php"); ?>
 
 
 
-
-return $data;
-}
-
-if (isset($_POST['searchid'])) {
-    $info = getData();
-    $sql = "SELECT *FROM guest WHERE gid= '$info[0]'";
-    $search_result =mysqli_query($conn,$sql);
-if (mysqli_num_rows($search_result)){
- while ($rows=mysqli_fetch_array($search_result)) {
-
-$gid=$rows['gid'];
-$gfullname=$rows['gfullname'];
-$gaddress=$rows['gaddress'];
-$gcountry=$rows['gcountry'];
-$gcity=$rows['gcity'];
-$gdate=$rows['gdate'];
-$gphone=$rows['gphone'];
-$gemail=$rows['gemail'];
-$ggender=$rows['ggender'];
-}
-}
-}
-
-// Update Command
-// sql to delete a record
-if (isset($_POST['update'])) {
-      $info = getData();
-$sql = "UPDATE guest SET gfullname='$info[1]',gaddress='$info[2]', gcountry='$info[3]', gcity='$info[4]', gdate='$info[5]', gphone='$info[6]', gemail='$info[7]', ggender='$info[8]' WHERE gid='$info[0]'";
-if ($conn->query($sql)===TRUE) {
-    echo"Record updated successfully";
-}
-else {
-    echo" Error updating record".mysql_error($conn);
-}
-}
-
-
-
-if(isset($_GET['Delete'])){
-    $sql = "SELECT * FROM guest ";
-    $result=$conn->query($sql);
-    $row=$result->fetch_assoc();
-    $gid=$row['gid'];
-    
-    //$idDelete = $_GET['idDelete'];
-    $sql = "DELETE FROM guest WHERE  gid='$gid'";
-    if($conn->query($sql)===TRUE) {
-        header("location: search.php");
-    }
-    else { ?>
-        <script>
-            alert("failed to delete");
-            window.location.href='search.php';
-        </script>
-        <?php
-        echo "failed to delete";
-    }
-}
-
-?>
 
 
 <!DOCTYPE html>
@@ -178,7 +87,12 @@ if(isset($_GET['Delete'])){
                      
                     </ul>
                   </li>
-                   
+                  <li><a><i class="fa fa-home"></i> check in <span class="fa fa-chevron-down"></span></a>
+                      <ul class="nav child_menu">
+                        <li><a href="checkin.php">  check in </a></li>
+                         <li><a href="rsearch.php">checkin list</a></li>
+                         </ul>
+                         </li>
                          <li><a><i class="fa fa-home"></i> Room<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="room.php">Room Regestration</a></li>
@@ -308,34 +222,138 @@ if(isset($_GET['Delete'])){
         </div>
         
 
+        <!-- /top navigation -->
+        
+ <div class="container-fluid">
+    <!-- <h1 class="well">Gust Regestration </h1> -->
+	<div class="col-lg-7 col-lg-offset-4 ">
+	<div class="row">
+  <div class="panel panel-primary">
+			<div class="panel-heading"><center>check in</center> 
+			</div>
+			<div class="panel-body">
+				<form  style="width:100%; margin: 30px 0px 0px 0px";  id="guest-form"  method="post" action="checkin.php">
+					<div class="col-sm-8">
+        		<div class="row">
+                      <div class="col-md-8 form-group has-feedback">
+                      	<label control-label" for="gfullname"">Fullname*</label>
+                         <select id="gfullname" name="gfullname"  class="form-control" required>
+                                 <?php
+                                            $sql = "select gfullname  from guest";
+                                            $result = $conn->query($sql);
+                                            if($result->num_rows > 0) {
+                                                while($row = $result->fetch_assoc()) { ?>
+                                            <option value="<?php echo $row['gfullname']; ?>"><?php echo $row['gfullname']; ?></option>
+                                            <?php }
+                                            }
+                                        ?>
+                                   
+                                  </select> 
+                        </div>
+                        <div class="col-md-4  form-group">
+								<label >Date of Regestration*</label>
+								<input type="date" name="gdate" placeholder="Enter datae Code Here.." class="form-control" required>
+							</div>	
+                      </div>					
+						<div class="row">
+							<div class="col-sm-8 form-group">
+								<label control-label" for="state"">Floor*</label>
+								<div class="control-group">
+                                  <select id="floor" name="floor"  class="form-control" required>
+                                     <?php
+                                            $sql = "select floor  from rooms";
+                                            $result = $conn->query($sql);
+                                            if($result->num_rows > 0) {
+                                                while($row = $result->fetch_assoc()) { ?>
+                                            <option value="<?php echo $row['floor']; ?>"><?php echo $row['floor']; ?></option>
+                                            <?php }
+                                            }
+                                        ?>
+                                   
 
 
+                                       
 
-
-         <div class="row">
-    <div class="col-xs-11">
-        <div class="text-right">
-            <a href="add.php" class="btn btn-info" role="button">Add New Guest</a>
-        </div>
-    </div>
-</div>
-<div class="container">
-<div class="row">
-<div class="col-sm-10 col-sm-offset-2 ">
-     <h1  class="bg-primary" align="center">Guest Information</h1>
-                <div class="form-group">
-                    <div class="input-group">
-                        <span class="input-group-addon">Search</span>
-                        <input type="text" name="search_text" id="search_text" placeholder="Search by Customer Details" class="form-control" />
-                    </div>
-
-                </div>
+                                  </select> 
+                                </div>
+							</div>	
+							<div class="col-sm-4   form-group">
+								<label control-label" for="city"">Room Number*</label>
+								<div class="control-group">
+                                  <select id="rno" name="rno"  class="form-control" required>
+                               <?php
+                                            $sql = "select rno  from roomno";
+                                            $result = $conn->query($sql);
+                                            if($result->num_rows > 0) {
+                                                while($row = $result->fetch_assoc()) { ?>
+                                            <option value="<?php echo $row['rno']; ?>"><?php echo $row['rno']; ?></option>
+                                            <?php }
+                                            }
+                                        ?>
+                                  </select> 
+                                </div>
+							</div>
+								
+              </div>
               
-                <div id="result"></div>
-           
+            <div class="row">
+					<div class="col-sm-8 form-group">
+					<div class="form-group">
+						<label control-label" for="rprice"">Room Type*</label>
+						<select id="rtype" name="rtype"  class="form-control" required>
+                                    <?php
+                                            $sql = "select rtype  from rooms";
+                                            $result = $conn->query($sql);
+                                            if($result->num_rows > 0) {
+                                                while($row = $result->fetch_assoc()) { ?>
+                                            <option value="<?php echo $row['rtype']; ?>"><?php echo $row['rtype']; ?></option>
+                                            <?php }
+                                            }
+                                        ?>
+                                  </select> 
+					</div>		
+					
+            </div>
+            <div class="col-sm-4 form-group">
+					<div class="form-group">
+						<label control-label" for="rprice"">Room Price*</label>
+						<select id="rprice" name="rprice"  class="form-control" required>
+                                   <?php
+                                            $sql = "select rprice  from rooms";
+                                            $result = $conn->query($sql);
+                                            if($result->num_rows > 0) {
+                                                while($row = $result->fetch_assoc()) { ?>
+                                            <option value="<?php echo $row['rprice']; ?>"><?php echo $row['rprice']; ?></option>
+                                            <?php }
+                                            }
+                                        ?>
+                                   
+                                  </select> 
+					</div>		
+					
+            </div>
+            
+            </div>
+  
+                      <div class="form-group">
+                        <div class="col-md-8  col-md-offset-4">
+                         
+						  
+                           <button style="width:100%; margin: 15px 0px 0px 0px;" type="submit" name="register" class="btn btn-lg btn-danger">Rigester</button>	
+                        </div>
+                        
+                      </div>
+
+				
+				</form> 
+        </div>
+				</div>
+
+	</div>
+	</div>
+        
     </div>
-    </div>
-    </div>
+
   <script src="jquery-3.2.1.js"></script>
     <!-- Bootstrap -->
     <link href="bootstrap.min.css" rel="stylesheet">
@@ -380,36 +398,6 @@ if(isset($_GET['Delete'])){
 
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.min.js"></script>
-	   
- </body>
+	
+  </body>
 </html>
-
-
-<script>
-        $(document).ready(function(){
-        load_data();
-        function load_data(query)
-        {
-            $.ajax({
-            url:"guestlist.php",
-            method:"POST",
-            data:{query:query},
-            success:function(data)
-            {
-                $('#result').html(data);
-            }
-            });
-        }
-        $('#search_text').keyup(function(){
-            var search = $(this).val();
-            if(search != '')
-            {
-                load_data(search);
-            }
-            else
-            {
-                load_data();
-            }
-        });
-    });
-</script>
